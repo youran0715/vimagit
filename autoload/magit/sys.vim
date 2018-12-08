@@ -19,10 +19,10 @@ function! s:magit_system(...)
 		call magit#utils#chdir(magit#git#top_dir())
 		" List as system() input is since v7.4.247, it is safe to check
 		" systemlist, which is sine v7.4.248
-		if exists('*systemlist')
+		" if exists('*systemlist')
 			" return call('system', a:000)
-			return call('vimproc#system', a:000)
-		else
+			" return vimproc#system(a:000)
+		" else
 			if ( a:0 == 2 )
 				if ( type(a:2) == type([]) )
 					" ouch, this one is tough: input is very very sensitive, join
@@ -35,7 +35,7 @@ function! s:magit_system(...)
 			else
 				return vimproc#system(a:1)
 			endif
-		endif
+		" endif
 	finally
 		call magit#utils#chdir(dir)
 	endtry
