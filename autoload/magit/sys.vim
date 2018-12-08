@@ -20,7 +20,8 @@ function! s:magit_system(...)
 		" List as system() input is since v7.4.247, it is safe to check
 		" systemlist, which is sine v7.4.248
 		if exists('*systemlist')
-			return call('system', a:000)
+			" return call('system', a:000)
+			return call('vimproc#system', a:000)
 		else
 			if ( a:0 == 2 )
 				if ( type(a:2) == type([]) )
@@ -30,9 +31,9 @@ function! s:magit_system(...)
 				else
 					let arg=a:2
 				endif
-				return system(a:1, arg)
+				return vimproc#system(a:1, arg)
 			else
-				return system(a:1)
+				return vimproc#system(a:1)
 			endif
 		endif
 	finally
